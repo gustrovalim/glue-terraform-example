@@ -1,3 +1,11 @@
+# Realiza o upload do script no S3
+resource "aws_s3_object" "object" {
+  bucket = var.bucket
+  key    = "example_job/script/example.py"
+  source = "app/example.py"
+}
+
+# Cria o job
 resource "aws_glue_job" "example" {
   name     = "example"
   role_arn = "${var.gluejob_role}"
